@@ -15,7 +15,12 @@ export const NewsSearch = (props) => {
             url = `https://newsapi.org/v2/top-headlines?pageSize=60&category=${category}&apiKey=${props.api}`;
         }
         axios
-            .get(url)
+            .get(url, {
+                headers: {
+                    'Upgrade': 'HTTP/2.0',
+                    'Connection': 'Upgrade'
+                }
+            })
             .then((response) => {
                 setNews(response.data.articles);
             })
